@@ -1,0 +1,182 @@
+﻿import React, { useState } from 'react';
+
+const QuestionDisplay = ({
+    currentQuestion,
+    testCompleted,
+    consecutiveCorrect,
+    handleAnswer,
+    handleSkip,
+    renderTestCompletion,
+    handleFeedback
+}) => {
+    const [feedbackSent, setFeedbackSent] = useState(false);
+
+    // If test is completed, render the summary
+    if (testCompleted) {
+        return renderTestCompletion();
+    }
+
+    // If no current question, show loading state
+    if (!currentQuestion) {
+        return (
+            <div className="question-container">
+                <div style={{ display: 'flex', justifyContent: 'center', padding: '40px 0' }}>
+                    <div className="loading-spinner"></div>
+                    <p>Loading next question...</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Feedback handler with confirmation
+    const onFeedback = (type) => {
+        if (handleFeedback) {
+            handleFeedback(type);
+            setFeedbackSent(true);
+            setTimeout(() => setFeedbackSent(false), 1200); // Reset for next question
+        }
+    };
+
+    return (
+        <div className="question-container">
+            <div className="question-section">
+                <span>{currentQuestion.section}</span>
+                <span className={`difficulty-indicator difficulty-${currentQuestion.difficulty.toLowerCase()}`}>
+                    {currentQuestion.difficulty}
+                </span>
+            </div>
+
+            <h2>{currentQuestion.question}</h2>
+
+            <div className="options">
+                {currentQuestion.options && currentQuestion.options.map((option, index) => (
+                    <button
+                        key={currentQuestion.id + '_' + index}
+                        className="option-btn"
+                        onClick={() => handleAnswer(option)}
+                    >
+                        {option}
+                    </button>
+                ))}
+            </div>
+
+            <div className="question-feedback-row">
+                <button className="feedback-btn" onClick={() => onFeedback("Question not relevant")}>
+                    Question not relevant
+                </button>
+                <button className="feedback-btn" onClick={() => onFeedback("Not enough information provided")}>
+                    Not enough information provided
+                </button>
+                <button className="feedback-btn" onClick={() => onFeedback("No correct answer")}>
+                    No correct answer
+                </button>
+                <button className="skip-btn feedback-btn" onClick={handleSkip} style={{ marginLeft: 'auto' }}>
+                    Skip for now
+                </button>
+            </div>
+        </div>
+    );
+};
+
+// Component to display test completion summary
+export const TestCompletionSummary = ({
+    correctAnswers,
+    incorrectAnswers,
+    currentPoints,
+    earnedBadges,
+    skippedQuestions,
+    incorrectQuestions,
+    returnToSkippedQuestion,
+    performanceByDifficulty,
+    onReturnToSectionSelect,
+    selectedSection
+}) => {
+    return (
+        <div className="question-container">
+            <div className="question-completed">
+                <span style={{ marginRight: '10px' }}>✅</span>
+                Section Completed!
+            </div>
+
+            <div className="test-stats">
+                <div className="stat-item">
+                    Correct <span className="stat-value">{correctAnswers}</span>
+                </div>
+                <div className="stat-item">
+                    Incorrect <span className="stat-value">{incorrectAnswers}</span>
+                </div>
+                <div className="stat-item">
+                    Points <span className="stat-value">{currentPoints}</span>
+                </div>
+                <div className="stat-item">
+                    Badges <span className="stat-value">{earnedBadges.length}</span>
+                </div>
+            </div>
+
+            {skippedQuestions && skippedQuestions.length > 0 && (
+                <div className="skipped-questions-section">
+                    <h3>Skipped Questions ({skippedQuestions.length})</h3>
+                    {skippedQuestions.map((item, index) => (
+                        <div
+                            key={item.question.id || index}
+                            className="skipped-question-item"
+                            onClick={() => returnToSkippedQuestion(item)}
+                        >
+                            <div className="skipped-question-section">
+                                {item.question.section} - {item.question.difficulty}
+                            </div>
+                            <div>{item.question.question}</div>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            <div className="adaptive-info">
+                <h4>
+                    <span className="adaptive-info-icon">📊</span>
+                    Performance Breakdown
+                </h4>
+                {Object.entries(performanceByDifficulty).map(([difficulty, data]) => {
+                    if (!data || !data.attempted) return null;
+                    const percentage = data.attempted ? Math.round((data.correct / data.attempted) * 100) : 0;
+                    const getMasteryLevel = () => {
+                        if (data.correct === 0) return "Developing";
+                        if (difficulty === "Easy") return "Excellent";
+                        if (difficulty === "Medium") return "Good";
+                        return data.correct > 0 ? "Developing" : "N/A";
+                    };
+                    return (
+                        <div className="difficulty-performance" key={difficulty}>
+                            <div className="difficulty-name">
+                                <span className={`difficulty-icon difficulty-icon-${difficulty.toLowerCase()}`}></span>
+                                {difficulty}
+                            </div>
+                            <div className="difficulty-stats">
+                                <div>Your mastery level: {getMasteryLevel()}</div>
+                                <div className="performance-bar-container">
+                                    <div
+                                        className={`performance-bar performance-bar-${difficulty.toLowerCase()}`}
+                                        style={{ width: `${percentage}%` }}
+                                    ></div>
+                                </div>
+                            </div>
+                            <div className="performance-percentage">
+                                {percentage}%
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+
+            {onReturnToSectionSelect && (
+                <div style={{ marginTop: 24, textAlign: 'center' }}>
+                    <button className="option-btn primary-btn" onClick={onReturnToSectionSelect}>
+                        Return to Topic Selection
+                    </button>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default QuestionDisplay;
