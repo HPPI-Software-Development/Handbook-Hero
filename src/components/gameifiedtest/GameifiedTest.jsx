@@ -15,8 +15,9 @@ const getUniqueSections = (testData) => {
 };
 
 // Utility: localStorage helpers
-const STORAGE_KEY = 'gameifiedTestProgress';
+//const STORAGE_KEY = 'gameifiedTestProgress';
 
+/*
 function loadProgress() {
     try {
         return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -27,7 +28,7 @@ function loadProgress() {
 
 function saveProgress(progress) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-}
+}*/
 
 const SectionTest = ({
     section,
@@ -315,20 +316,25 @@ const GameifiedTest = ({ testData = sampleTestData }) => {
 
     // Load progress from localStorage on mount
     useEffect(() => {
+        /*
         const progress = loadProgress();
         setCompletedSections(progress.completedSections || []);
         setSectionProgress(progress.sectionProgress || {});
-        setResumeSection(progress.resumeSection || null);
+        setResumeSection(progress.resumeSection || null);*/
+        setCompletedSections([]);
+        setSectionProgress({});
+        setResumeSection(null);
     }, []);
 
     // Save progress to localStorage on change
+    /*
     useEffect(() => {
         saveProgress({
             completedSections,
             sectionProgress,
             resumeSection
         });
-    }, [completedSections, sectionProgress, resumeSection]);
+    }, [completedSections, sectionProgress, resumeSection]);*/
 
     // Function to handle when a question is answered correctly in review mode
     const handleReviewQuestionCorrect = (type, questionId) => {
@@ -376,8 +382,19 @@ const GameifiedTest = ({ testData = sampleTestData }) => {
         }
     };
 
+    /*
     function clearProgress() {
         localStorage.removeItem(STORAGE_KEY);
+        setCompletedSections([]);
+        setSectionProgress({});
+        setResumeSection(null);
+        setSelectedSection(null);
+        messageManager.setCustomMessage('Progress cleared! You can start over.', true);
+    }*/
+
+    // In GameifiedTest.jsx, add this function where the commented localStorage functions were
+
+    function clearProgress() {
         setCompletedSections([]);
         setSectionProgress({});
         setResumeSection(null);
