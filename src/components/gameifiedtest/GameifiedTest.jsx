@@ -121,10 +121,9 @@ const SectionTest = ({
             onSectionCompleted && onSectionCompleted(section, isReviewMode);
         },
         onSkippedQuestionsChange: (skippedQuestions) => {
-            if (skippedQuestions.length > 0) {
-                messageManager.showSkippedMessage();
-            }
+            messageManager.showSkippedMessage(skippedQuestions);
         },
+
         resumeState: resumeState?.adaptiveTestState, // Pass only the adaptive part
         isReviewMode,
         reviewType,
