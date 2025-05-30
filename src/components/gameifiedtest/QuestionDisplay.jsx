@@ -61,14 +61,8 @@ const QuestionDisplay = ({
             </div>
 
             <div className="question-feedback-row">
-                <button className="feedback-btn" onClick={() => onFeedback("Question not relevant")}>
-                    Question not relevant
-                </button>
                 <button className="feedback-btn" onClick={() => onFeedback("Not enough information provided")}>
                     Not enough information provided
-                </button>
-                <button className="feedback-btn" onClick={() => onFeedback("No correct answer")}>
-                    No correct answer
                 </button>
                 <button className="skip-btn feedback-btn" onClick={handleSkip} style={{ marginLeft: 'auto' }}>
                     Skip for now
@@ -139,12 +133,16 @@ export const TestCompletionSummary = ({
                 {Object.entries(performanceByDifficulty).map(([difficulty, data]) => {
                     if (!data || !data.attempted) return null;
                     const percentage = data.attempted ? Math.round((data.correct / data.attempted) * 100) : 0;
+
+                    // Determine mastery level based on percentage of correct answers
+                    // Using the exact levels requested: 0% N/A, 0-60% Developing, 60-85% Good, 85-100% Excellent
                     const getMasteryLevel = () => {
-                        if (data.correct === 0) return "Developing";
-                        if (difficulty === "Easy") return "Excellent";
-                        if (difficulty === "Medium") return "Good";
-                        return data.correct > 0 ? "Developing" : "N/A";
+                        if (percentage === 0) return "N/A";
+                        if (percentage < 60) return "Developing";
+                        if (percentage < 85) return "Good";
+                        return "Excellent";
                     };
+
                     return (
                         <div className="difficulty-performance" key={difficulty}>
                             <div className="difficulty-name">

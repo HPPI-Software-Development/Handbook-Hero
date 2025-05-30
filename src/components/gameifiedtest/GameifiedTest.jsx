@@ -89,7 +89,7 @@ const SectionTest = ({
                 messageManager.setCustomMessage('Answer the questions you previously skipped!', true);
             }
         }
-    }, [isReviewMode, reviewType, messageManager]);
+    }, []);
 
     // Update review questions when they change
     useEffect(() => {
@@ -121,10 +121,10 @@ const SectionTest = ({
             onSectionCompleted && onSectionCompleted(section, isReviewMode);
         },
         onSkippedQuestionsChange: (skippedQuestions) => {
-            if (skippedQuestions.length > 0) {
-                messageManager.showSkippedMessage();
-            }
+            messageManager.showSkippedMessage(skippedQuestions);
+            messageManager.updateSkippedQuestionCount(skippedQuestions.length);
         },
+
         resumeState: resumeState?.adaptiveTestState, // Pass only the adaptive part
         isReviewMode,
         reviewType,

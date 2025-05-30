@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { gameConfig } from './GameConfig';
 
 /**
@@ -9,13 +9,32 @@ const useGameMessageManager = () => {
     text: 'Complete questions to earn points and badges!', 
     highlight: false 
   });
+  
+  // Create a ref to store the timeout ID
+  const timeoutRef = useRef(null);
+  
+  // Ref to track the last skipped questions count
+  const lastSkippedCountRef = useRef(0);
 
-  const clearMessage = () => setMessage({ text: '', highlight: false });
+  const clearMessage = () => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setMessage({ text: '', highlight: false });
+  };
   
   /**
    * Show a message with point information
    */
   const showPointsMessage = (points, streakBonus, multiplier) => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     // Get random encouraging message
     const randomIndex = Math.floor(Math.random() * gameConfig.encouragingMessages.length);
     const randomMessage = gameConfig.encouragingMessages[randomIndex];
@@ -36,8 +55,9 @@ const useGameMessageManager = () => {
     });
     
     // Reset highlight after animation
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setMessage(prev => ({ ...prev, highlight: false }));
+      timeoutRef.current = null;
     }, 1500);
   };
   
@@ -45,6 +65,12 @@ const useGameMessageManager = () => {
    * Show a badge achievement message
    */
   const showBadgeMessage = (badge) => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     setMessage({
       text: (
         <>
@@ -56,8 +82,9 @@ const useGameMessageManager = () => {
     });
     
     // Reset highlight after animation
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setMessage(prev => ({ ...prev, highlight: false }));
+      timeoutRef.current = null;
     }, 1500);
   };
   
@@ -65,6 +92,12 @@ const useGameMessageManager = () => {
    * Show a difficulty change message
    */
   const showDifficultyChangeMessage = (newDifficulty, isAdvancing) => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     setMessage({
       text: (
         <p>
@@ -77,47 +110,75 @@ const useGameMessageManager = () => {
     });
     
     // Reset highlight after animation
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setMessage(prev => ({ ...prev, highlight: false }));
+      timeoutRef.current = null;
     }, 1500);
   };
   
   /**
    * Show a message when a question is skipped
+   * @param {Array} skippedQuestions - The current array of skipped questions
    */
-  const showSkippedMessage = () => {
-    setMessage({
-      text: <p>Question skipped. You can come back to it later.</p>,
-      highlight: true
-    });
-    
-    // Reset highlight after animation
-    setTimeout(() => {
-      setMessage(prev => ({ ...prev, highlight: false }));
-    }, 1000);
+  const showSkippedMessage = (skippedQuestions = []) => {
+    // Only show the message if there's a new skipped question
+    if (skippedQuestions.length > lastSkippedCountRef.current) {
+      // Update the last skipped count reference
+      lastSkippedCountRef.current = skippedQuestions.length;
+      
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      
+      setMessage({
+        text: <p>Question skipped. You can come back to it later.</p>,
+        highlight: true
+      });
+      
+      // Reset highlight after animation
+      timeoutRef.current = setTimeout(() => {
+        setMessage(prev => ({ ...prev, highlight: false }));
+        timeoutRef.current = null;
+      }, 1000);
+    }
   };
 
   /**
    * Show a message when feedback is submitted
    */  
-    const showFeedbackMessage = (inReviewMode = false) => {
-        setMessage({
-            text: inReviewMode ? 
-                <p>Thank you for your feedback! Question removed from your review list.</p> :
-                <p>Thank you for your feedback!</p>,
-            highlight: true
-        });
+  const showFeedbackMessage = (inReviewMode = false) => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
+    setMessage({
+      text: inReviewMode ? 
+          <p>Thank you for your feedback! Question removed from your review list.</p> :
+          <p>Thank you for your feedback!</p>,
+      highlight: true
+    });
 
-        // Reset highlight after animation
-        setTimeout(() => {
-            setMessage(prev => ({ ...prev, highlight: false }));
-        }, 1000);
-    };
+    // Reset highlight after animation
+    timeoutRef.current = setTimeout(() => {
+      setMessage(prev => ({ ...prev, highlight: false }));
+      timeoutRef.current = null;
+    }, 1000);
+  };
   
   /**
    * Show a message for early test termination
    */
   const showEarlyTerminationMessage = (isHighPerformer, bonusPoints = 0) => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     setMessage({
       text: isHighPerformer ? (
         <>
@@ -134,12 +195,24 @@ const useGameMessageManager = () => {
       ),
       highlight: true
     });
+    
+    // Reset highlight after animation
+    timeoutRef.current = setTimeout(() => {
+      setMessage(prev => ({ ...prev, highlight: false }));
+      timeoutRef.current = null;
+    }, 1500);
   };
   
   /**
    * Show a message for test completion
    */
   const showCompletionMessage = (currentPoints, earnedBadges, reviewTitle = null) => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     if (reviewTitle) {
       setMessage({
         text: (
@@ -163,20 +236,29 @@ const useGameMessageManager = () => {
         highlight: true
       });
     }
+    
+    // No timeout for completion message - it should stay visible
   };
   
   /**
    * Show a message for returning to skipped questions
    */
   const showReturnToSkippedMessage = () => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     setMessage({
       text: <p>Let's go back to the questions you skipped.</p>,
       highlight: true
     });
     
     // Reset highlight after animation
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setMessage(prev => ({ ...prev, highlight: false }));
+      timeoutRef.current = null;
     }, 1000);
   };
   
@@ -184,6 +266,12 @@ const useGameMessageManager = () => {
    * Set a custom message
    */
   const setCustomMessage = (text, highlight = true) => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     setMessage({
       text,
       highlight
@@ -191,8 +279,9 @@ const useGameMessageManager = () => {
     
     // Reset highlight after animation if needed
     if (highlight) {
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setMessage(prev => ({ ...prev, highlight: false }));
+        timeoutRef.current = null;
       }, 1500);
     }
   };
@@ -201,6 +290,12 @@ const useGameMessageManager = () => {
    * Show a message when starting a review session
    */
   const showReviewSessionMessage = (reviewType) => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     setMessage({
       text: (
         <>
@@ -215,10 +310,30 @@ const useGameMessageManager = () => {
     });
     
     // Reset highlight after animation
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setMessage(prev => ({ ...prev, highlight: false }));
+      timeoutRef.current = null;
     }, 1500);
-  };
+    };
+
+    /**
+     * Manually update the skipped questions count reference
+     * Use this when skipped questions are answered in review mode
+     * @param {number} count - The new count of skipped questions
+     */
+    const updateSkippedQuestionCount = (count) => {
+        lastSkippedCountRef.current = count;
+    };
+
+  // Reset skipped count when component mounts/remounts
+  useEffect(() => {
+    lastSkippedCountRef.current = 0;
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   return {
     message,
@@ -232,7 +347,8 @@ const useGameMessageManager = () => {
     showFeedbackMessage,
     showReviewSessionMessage,
     setCustomMessage,
-    clearMessage
+    clearMessage,
+    updateSkippedQuestionCount
   };
 };
 

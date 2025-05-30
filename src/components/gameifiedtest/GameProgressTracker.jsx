@@ -34,7 +34,7 @@ const GameProgressTracker = ({
                 </div>
 
                 <div className="progress-info">
-                    <span>Question {answeredQuestions + 1} of {totalQuestions}</span>
+                    <span>Question {answeredQuestions + skippedQuestions.length + 1} of {totalQuestions}</span>
                     <span>
                         {skippedQuestions.length > 0 && `${skippedQuestions.length} skipped`}
                     </span>
