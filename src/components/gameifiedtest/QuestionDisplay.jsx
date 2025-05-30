@@ -61,14 +61,8 @@ const QuestionDisplay = ({
             </div>
 
             <div className="question-feedback-row">
-                <button className="feedback-btn" onClick={() => onFeedback("Question not relevant")}>
-                    Question not relevant
-                </button>
                 <button className="feedback-btn" onClick={() => onFeedback("Not enough information provided")}>
                     Not enough information provided
-                </button>
-                <button className="feedback-btn" onClick={() => onFeedback("No correct answer")}>
-                    No correct answer
                 </button>
                 <button className="skip-btn feedback-btn" onClick={handleSkip} style={{ marginLeft: 'auto' }}>
                     Skip for now
