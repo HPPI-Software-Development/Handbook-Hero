@@ -348,7 +348,13 @@ const useAdaptiveTest = ({
 
         // If reviewing skipped questions, remove from skipped array
         if (viewingSkippedQuestions && skippedQuestions.length > 0 && skippedQuestions[0].question.id === currentQuestion.id) {
-            setSkippedQuestions(prev => prev.slice(1));
+            const updatedSkippedQuestions = skippedQuestions.slice(1);
+            setSkippedQuestions(updatedSkippedQuestions);
+
+            // Notify parent component about the updated skipped questions
+            if (onSkippedQuestionsChange) {
+                onSkippedQuestionsChange(updatedSkippedQuestions);
+            }
         }
 
         // Move to next question

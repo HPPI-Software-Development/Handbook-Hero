@@ -314,7 +314,16 @@ const useGameMessageManager = () => {
       setMessage(prev => ({ ...prev, highlight: false }));
       timeoutRef.current = null;
     }, 1500);
-  };
+    };
+
+    /**
+     * Manually update the skipped questions count reference
+     * Use this when skipped questions are answered in review mode
+     * @param {number} count - The new count of skipped questions
+     */
+    const updateSkippedQuestionCount = (count) => {
+        lastSkippedCountRef.current = count;
+    };
 
   // Reset skipped count when component mounts/remounts
   useEffect(() => {
@@ -338,7 +347,8 @@ const useGameMessageManager = () => {
     showFeedbackMessage,
     showReviewSessionMessage,
     setCustomMessage,
-    clearMessage
+    clearMessage,
+    updateSkippedQuestionCount
   };
 };
 
