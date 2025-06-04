@@ -1,6 +1,6 @@
 {
-  "homepage": "https://HPPI-Software-Development.github.io/Handbook-Hero",
-  "name": "machinery-test-app",
+  "homepage": "https://hppi-software-development.github.io/Handbook-Hero",
+  "name": "Handbook-Hero",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
