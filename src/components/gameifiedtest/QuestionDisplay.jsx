@@ -1,5 +1,7 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useMemo } from 'react';
+import { getQuoteForSection } from './QuoteDatabase';
+
 
 function shuffleArray(array) {
     const arr = [...array];
@@ -102,6 +104,15 @@ export const TestCompletionSummary = ({
     onReturnToSectionSelect,
     selectedSection
 }) => {
+    // Get a quote for this section when the component mounts
+    const [quote, setQuote] = useState(null);
+
+    useEffect(() => {
+        // Get a quote related to the current section
+        const sectionQuote = getQuoteForSection(selectedSection);
+        setQuote(sectionQuote);
+    }, [selectedSection]);
+
     return (
         <div className="question-container">
             <div className="question-completed">
@@ -123,6 +134,16 @@ export const TestCompletionSummary = ({
                     Badges <span className="stat-value">{earnedBadges.length}</span>
                 </div>
             </div>
+
+            {/* Display the quote */}
+            {quote && (
+                <div className="quote-container">
+                    <blockquote className="quote-text">
+                        {quote.quote}
+                    </blockquote>
+                    <div className="quote-author">— {quote.author}</div>
+                </div>
+            )}
 
             {skippedQuestions && skippedQuestions.length > 0 && (
                 <div className="skipped-questions-section">

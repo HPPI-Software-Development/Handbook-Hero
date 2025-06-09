@@ -30,5 +30,6 @@ yarn-error.log*
 # OS files
 Thumbs.db
 
-# Ignore generated questions.js file
+# Ignore generated files
 questions.js
+src/components/gameifiedtest/QuoteDatabase.js
