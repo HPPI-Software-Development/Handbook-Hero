@@ -78,7 +78,9 @@ const GameProgressTracker = ({
             </div>
 
             {/* Message Area */}
-            <div className={`message-area ${message.highlight ? 'message-highlight' : ''}`}>
+            <div className={`message-area ${message.highlight === true ? 'message-highlight' :
+                message.highlight === 'incorrect' ? 'message-highlight-incorrect' : ''
+                }`}>
                 {message.text || "Complete questions to earn points and badges!"}
             </div>
         </div>

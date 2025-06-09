@@ -1,12 +1,13 @@
 ﻿// Updated GameifiedTest.jsx
 
 import React, { useState, useEffect } from 'react';
-import { gameConfig, sampleTestData } from './GameConfig';
+import { gameConfig } from './GameConfig';
 import { styles } from './GameStyles';
 import GameProgressTracker from './GameProgressTracker';
 import QuestionDisplay, { TestCompletionSummary } from './QuestionDisplay';
 import useAdaptiveTest from './AdaptiveTest';
 import useGameMessageManager from './GameMessageManager';
+import questions from '../../questions';
 
 const getUniqueSections = (testData) => {
     const sections = new Set();
@@ -45,13 +46,13 @@ const SectionTest = ({
     onReviewQuestionCorrect // New prop to handle correct questions in review mode
 }) => {
     // Use filtered data based on mode
-    const filteredTestData = isReviewMode 
-        ? reviewQuestions 
+    const filteredTestData = isReviewMode
+        ? reviewQuestions
         : testData.filter(q => q.section === section);
 
     // Store initial count of review questions
     const [initialReviewQuestionsCount, setInitialReviewQuestionsCount] = useState(reviewQuestions.length);
-    
+
     // Restore state if resuming
     const [currentPoints, setCurrentPoints] = useState(resumeState?.currentPoints || 0);
     const [earnedBadges, setEarnedBadges] = useState(resumeState?.earnedBadges || []);
@@ -74,7 +75,7 @@ const SectionTest = ({
             onReviewQuestionCorrect(reviewType, questionId);
             // Also update the local state
             setCurrentReviewQuestions(prev => prev.filter(q => q.id !== questionId));
-            
+
             // Show a message
             messageManager.setCustomMessage(`Question removed from your ${reviewType} questions!`, true);
         }
@@ -205,6 +206,7 @@ const SectionTest = ({
         const isCorrect = selectedOption === adaptiveTest.currentQuestion?.answer;
         if (!isCorrect) {
             handleIncorrectAnswer();
+            messageManager.showIncorrectAnswerMessage(); // <-- Add this line
         }
         adaptiveTest.handleAnswer(selectedOption);
     };
@@ -247,13 +249,13 @@ const SectionTest = ({
             >
                 <span className="nav-back-icon">←</span> Back to Topic Selection
             </button>
-            
+
             {isReviewMode && (
                 <div style={{ marginBottom: 12 }}>
                     <h2>{getTitle()}</h2>
                 </div>
             )}
-            
+
             <GameProgressTracker
                 totalQuestions={getTotalQuestions()}
                 answeredQuestions={answeredQuestions}
@@ -274,7 +276,7 @@ const SectionTest = ({
                 renderTestCompletion={renderTestCompletion}
                 handleFeedback={(type) => {
                     adaptiveTest.handleFeedback(type);
-        
+
                     if (isReviewMode && adaptiveTest.currentQuestion) {
                         // If we're in review mode and feedback is provided, also remove from review list
                         messageManager.showFeedbackMessage(true); // Pass true to indicate review mode
@@ -288,8 +290,7 @@ const SectionTest = ({
     );
 };
 
-const GameifiedTest = ({ testData = sampleTestData }) => {
-    // Progress state
+const GameifiedTest = ({ testData = questions }) => {
     const [currentPoints, setCurrentPoints] = useState(0);
     const [earnedBadges, setEarnedBadges] = useState([]);
     const [answeredQuestions, setAnsweredQuestions] = useState(0);
@@ -297,7 +298,7 @@ const GameifiedTest = ({ testData = sampleTestData }) => {
     const [incorrectAnswers, setIncorrectAnswers] = useState(0);
     const [pointsAnimation, setPointsAnimation] = useState(false);
     const [selectedSection, setSelectedSection] = useState(null);
-    
+
     // Review mode state
     const [isReviewMode, setIsReviewMode] = useState(false);
     const [reviewType, setReviewType] = useState(null);
@@ -341,42 +342,42 @@ const GameifiedTest = ({ testData = sampleTestData }) => {
         if (type === 'skipped') {
             // Remove from all sections' skipped questions
             const updatedProgress = { ...sectionProgress };
-            
+
             // Loop through each section and update its skipped questions
             Object.keys(updatedProgress).forEach(section => {
                 const sectionData = updatedProgress[section];
                 if (sectionData?.adaptiveTestState?.skippedQuestions?.length > 0) {
-                    sectionData.adaptiveTestState.skippedQuestions = 
+                    sectionData.adaptiveTestState.skippedQuestions =
                         sectionData.adaptiveTestState.skippedQuestions.filter(
                             item => !(item.question?.id === questionId || item.id === questionId)
                         );
                 }
             });
-            
+
             // Update state
             setSectionProgress(updatedProgress);
-            
+
             // Also update the current review questions
             setReviewQuestions(prev => prev.filter(q => q.id !== questionId));
-            
+
         } else if (type === 'incorrect') {
             // Remove from all sections' incorrect questions
             const updatedProgress = { ...sectionProgress };
-            
+
             // Loop through each section and update its incorrect questions
             Object.keys(updatedProgress).forEach(section => {
                 const sectionData = updatedProgress[section];
                 if (sectionData?.adaptiveTestState?.incorrectQuestions?.length > 0) {
-                    sectionData.adaptiveTestState.incorrectQuestions = 
+                    sectionData.adaptiveTestState.incorrectQuestions =
                         sectionData.adaptiveTestState.incorrectQuestions.filter(
                             item => !(item.question?.id === questionId || item.id === questionId)
                         );
                 }
             });
-            
+
             // Update state
             setSectionProgress(updatedProgress);
-            
+
             // Also update the current review questions
             setReviewQuestions(prev => prev.filter(q => q.id !== questionId));
         }
@@ -401,37 +402,37 @@ const GameifiedTest = ({ testData = sampleTestData }) => {
         setSelectedSection(null);
         messageManager.setCustomMessage('Progress cleared! You can start over.', true);
     }
-    
+
     // Helper function to handle incorrect review button click
     function handleReviewIncorrect() {
         // Collect all incorrect questions from all sections
         const allIncorrectQuestions = Object.values(sectionProgress)
             .flatMap(section => section.adaptiveTestState?.incorrectQuestions || [])
             .map(item => item.question || item);
-        
+
         if (allIncorrectQuestions.length === 0) {
             messageManager.setCustomMessage("No incorrect answers found to review", true);
             return;
         }
-        
+
         setReviewQuestions(allIncorrectQuestions);
         setReviewType('incorrect');
         setIsReviewMode(true);
         setSelectedSection('Review - Incorrect');
     }
-    
+
     // Helper function to handle skipped review button click
     function handleReviewSkipped() {
         // Collect all skipped questions from all sections
         const allSkippedQuestions = Object.values(sectionProgress)
             .flatMap(section => section.adaptiveTestState?.skippedQuestions || [])
             .map(item => item.question || item);
-        
+
         if (allSkippedQuestions.length === 0) {
             messageManager.setCustomMessage("No skipped questions found to review", true);
             return;
         }
-        
+
         setReviewQuestions(allSkippedQuestions);
         setReviewType('skipped');
         setIsReviewMode(true);
@@ -593,8 +594,8 @@ const GameifiedTest = ({ testData = sampleTestData }) => {
     };
 
     // Find resume state for this section
-    const resumeState = (!isReviewMode && resumeSection && sectionProgress[resumeSection]) 
-        ? sectionProgress[resumeSection] 
+    const resumeState = (!isReviewMode && resumeSection && sectionProgress[resumeSection])
+        ? sectionProgress[resumeSection]
         : null;
 
     return (

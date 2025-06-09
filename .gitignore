@@ -29,3 +29,6 @@ yarn-error.log*
 
 # OS files
 Thumbs.db
+
+# Ignore generated questions.js file
+questions.js
