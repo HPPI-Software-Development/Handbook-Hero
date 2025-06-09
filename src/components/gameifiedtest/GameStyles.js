@@ -818,6 +818,19 @@ const styles = `
       font-size: 0.85rem;
     }
   }
+
+  .message-highlight-incorrect {
+    background-color: #fbeaea;
+    border-left: 4px solid var(--danger);
+    animation: highlightMessageIncorrect 1s ease;
+}
+
+@keyframes highlightMessageIncorrect {
+    0% { background-color: var(--white); }
+    50% { background-color: #fbeaea; }
+    100% { background-color: var(--white); }
+}
+
 `;
 
 export { styles };

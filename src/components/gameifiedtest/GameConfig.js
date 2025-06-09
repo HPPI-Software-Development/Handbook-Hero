@@ -1,179 +1,181 @@
 // Game configuration
 const gameConfig = {
-  // Point values based on difficulty
-  pointValues: {
-    Easy: 10,
-    Medium: 25,
-    Hard: 50
-  },
-  // Multipliers for consecutive correct answers
-  streakMultipliers: {
-    3: 1.5,  // 3 correct in a row: 1.5x points
-    5: 2.0,  // 5 correct in a row: 2x points
-    10: 3.0  // 10 correct in a row: 3x points
-  },
-  // Badges and their requirements
-  badges: [
-    { name: "Beginner", icon: "🔰", pointsRequired: 50, message: "You've taken your first steps!" },
-    { name: "Explorer", icon: "🧭", pointsRequired: 150, message: "You're exploring new territories!" },
-    { name: "Problem Solver", icon: "🧩", pointsRequired: 300, message: "You're solving problems like a pro!" },
-    { name: "Expert", icon: "🏆", pointsRequired: 700, message: "You've mastered the material!" },
-    { name: "Genius", icon: "🧠", pointsRequired: 2000, message: "Absolutely brilliant work!" },
-    { name: "Savant", icon: "🔥", pointsRequired: 100000, message: "You have arrived!  Take a moment to enjoy the view." }
-  ],
-  // Encouraging messages shown randomly
-  encouragingMessages: [
-    "Great job, keep going!",
-    "You're doing fantastic!",
-    "That's the way to do it!",
-    
-    "Excellent progress!",
-    "You're on fire today!",
-    "Keep up the good work!",
-    "Impressive skills!",
-    "Wow! Look at your big, beautiful brain.",
-    "You're crushing it!",
-    "Stellar performance!",
-    "Way to go!",
-    "Your brain must be solar-powered because it radiates pure genius every day.",
-    "Watching you work is like observing a master chef cooking brilliance into existence.",
-    "Your talent is so bright, I need sunglasses just to keep up.",
-    "If excellence were an Olympic sport, you'd win gold preheated and wrapped in applause.",
-    "Your ideas sparkle more than a disco ball at a meteor shower.",
-    "Your work is so sharp, even diamonds ask for your autograph.",
-    "You’ve cracked success like an egg, and the yolk is just perfect.",
-    "Your skill is so mesmerizing, even magic wands feel obsolete around you.",
-    "If brilliance had a face, it would be crying tears of pride now.",
-    "You’re so on point, archers give you a standing ovation.",
-    "Your success could power a small city, and still have leftovers.",
-    "You blend creativity and precision better than peanut butter and jelly.",
-    "Your success today makes yesterday look like it was on vacation.",
-    "You are a rocket, fueled by pure awesome.",
-    "Just watching you work makes me smarter.",
-    "You’re setting records so quickly, even speedometers are jealous.",
-    "Your talent is brighter than a supernova on a dark night.",
-    "You’re cooking up brilliance so tasty, it could earn another Michelin star.",
-    "Your mind moves faster than a bullet train chasing a cheetah.",
-    "Your insights are deeper than the Mariana Trench of intellect.",
-    "The excitment of your success is so contagious, I need a vaccine.",
-    "Your talent is like a fine wine, improving with every moment.",
-    "I bet your breakfast is cooked within a micron.",
-    "You’re so smart.  I bet you're charming and good looking, too.",
-    "Your success glows brighter than my phone screen at bedtime.",
-    "Your brain is a powerhouse; I’m filing for its patent.",
-    "The bar just raised itself to meet you.",
-    "You're so brilliant, light bulbs ask you for illumination tips.",
-    "Eagles soar high, but they fly in your shadow.",
-    "Your farm breeds a whole lot of genius.",
-    "Your talent is sharper than cheddar, and twice as mature.",
-    "You're so efficient, you make robotic arms feel underdressed.",
-    "Your brain is so big, black holes file restraining orders.",
-    "Your skills could teach a master class at the school of awesome.",
-    "Your achievement today should be bottled and sold as pure inspiration.",
-    "You operate at such a high level, gravity is jealous.",
-    "Your performance today was like a lightning bolt wrapped in silk.",
-    "Your solutions are so neat, Marie Kondo wants your address.",
-    "Your performance is so epic, historians will write ballads about you.",
-    "You're like a Swiss Army knife—versatile, sharp, and always impressive.",
-    "You are a tornado of brilliance sweeping away mediocrity.",
-    "So it turns out you're pretty great - keep it up!",
-    "All aboard!  Your freight train of performance is underway.",
-    "Your success is magnetic...   iron filings cling to you.",
-    "You’re a maestro of success; conductors study your every move.",
-    "Your mind is a diamond mine; priceless gems emerge constantly.",
-    "Wow. Your productivity makes Energizer bunnies feel like they need naps.",
-    "Your performance is smoother than a buttered and reheated croissant.",
-    "In the dictionary, your picture can be found under 'Greatness'",
-    "You are so bright, sunglasses sell out near you."
+    // Point values based on difficulty
+    pointValues: {
+        Easy: 10,
+        Medium: 25,
+        Hard: 50
+    },
+    // Multipliers for consecutive correct answers
+    streakMultipliers: {
+        3: 1.5,  // 3 correct in a row: 1.5x points
+        5: 2.0,  // 5 correct in a row: 2x points
+        10: 3.0  // 10 correct in a row: 3x points
+    },
+    // Badges and their requirements
+    badges: [
+        { name: "Beginner", icon: "🔰", pointsRequired: 50, message: "You've taken your first steps!" },
+        { name: "Explorer", icon: "🧭", pointsRequired: 150, message: "You're exploring new territories!" },
+        { name: "Problem Solver", icon: "🧩", pointsRequired: 300, message: "You're solving problems like a pro!" },
+        { name: "Expert", icon: "🏆", pointsRequired: 700, message: "You've mastered the material!" },
+        { name: "Genius", icon: "🧠", pointsRequired: 2000, message: "Absolutely brilliant work!" },
+        { name: "Savant", icon: "🔥", pointsRequired: 100000, message: "You have arrived!  Take a moment to enjoy the view." }
+    ],
+    // Encouraging messages shown randomly
+    encouragingMessages: [
+        "Great job, keep going!",
+        "You're doing fantastic!",
+        "That's the way to do it!",
 
-//Message to show when an incorrect answer is shown:
-//"Oops, you were close—keep going!"
-//"That’s okay; errors help you learn."
-//"Almost there; let’s move to the next."
-//"Mistakes happen; focus on the next challenge."
-//"Hey, it’s not win or lose, it’s win or learn!"
-//"Shake it off and hit the next question."
-//"That’s okay—confidence grows through trial and error."
-//"You’ll bounce back—let’s continue onward."
-//"Gosh, you were doing so well—keep at it!"
-//"Wrong answer, right mindset—onward to mastery."
-//"It’s fine; your progress isn’t defined by one question."
-//"Lessons learned—let’s tackle what’s next."
-//"One hiccup won’t stop your forward momentum."
-//"Minor setback; major growth awaits you."
-//"It’s okay; you’re sharpening your skills here."
-//"Almost—but not quite; let’s keep learning."
-//"That’s a miss, but a chance to improve."
-//"Take a breath and move on confidently."
-//"Mistakes are proof you’re trying your best."
-//"It’s okay; growth is messy sometimes."
-//"Nice effort—your brain is still buzzing."
-//"You’ve got this—on to the next."
-//"It’s okay—learning isn’t linear."
-//"Stay positive; you’re building mastery here."
-//"Don’t sweat it; focus on growth now."
-//"One slip won’t slow you down."
-//"You’ll laugh at this mistake later—keep moving."
-//"Your effort counts more than one answer... Keep going!"
-//"Embrace the learning curve."
-//"Don’t let this trip-up distract you."
-//"Keep your head up—success loves perseverance."
-//"Not quite there—try again on the next."
-//"Oops... but your growth mindset is more important than perfection."
-//"Incorrect now; unstoppable later!"
-//"Take a breath—future success awaits you."
-//"Oops!  That's ok, you’ll only get stronger from this."
-//"Mistakes are part of your learning journey."
-//"It’s only a slip, not a stop."
-//"Incorrect answer, valuable lesson—let’s continue."
-//"That’s okay; your brain is in practice mode."
-//"Missed it, but you’re still moving forward."
-//"You learn more from your mistakes than successes."
-//"Incorrect isn’t bad—just another step to mastery."
-//"Everything is hard before it's easy."
-//"No worries—this too shall guide your growth."
-//"Sincere effort—now onto the next challenge!"
-//"It’s fine; every expert was once a beginner."
-//"That’s okay—resilience is your greatest asset."
-//"Keep moving—learning never stops for mistakes."
-//"One misstep; many steps ahead remain."
-//"Stay focused—growth comes from overcoming setbacks."
-//"That’s alright; you’re sharpening your mind."
-//"One set-back, ten steps forward next."
-//"You’ll bounce back better than before."
-//"Every mistake is proof you’re stretching your limits."
-//"Keep your chin up—success is just ahead."
-//"You’ll look back on this and smile."
-//"That’s okay; you’re still rocking this."
-//"Your progress isn’t measured by one question."
-//"Setbacks are temporary; keep striving onward."
-//"Let’s turn this misstep into motivation."
-//"Gently recover, then attack the next question!"
-//"It’s fine; each mistake fuels your future success."
-    
-  ],
-  // Adaptive testing configuration
-  adaptiveTesting: {
-    // Number of questions per difficulty level
-    questionsPerDifficulty: {
-      Easy: 5,
-      Medium: 5,
-      Hard: 5
-    },
-    // Thresholds for advancing to next difficulty
-    advancementThreshold: 0.7,  // 70% correct to advance to next level
-    // Thresholds for reducing difficulty
-    reductionThreshold: 0.4,    // Below 40% correct returns to lower level
-    // Minimum questions before test can end early
-    minQuestionsRequired: 5,
-    // Performance threshold for early termination
-    earlyTerminationThreshold: {
-      lowPerformer: 0.3,  // Below 30% correct on easy questions
-      highPerformer: 0.9  // Above 90% correct on hard questions
-    },
-    // When loading questions (for large datasets)
-    initialQuestionsPerDifficulty: 10  // Load this many questions per difficulty initially
-  }
+        "Excellent progress!",
+        "You're on fire today!",
+        "Keep up the good work!",
+        "Impressive skills!",
+        "Wow! Look at your big, beautiful brain.",
+        "You're crushing it!",
+        "Stellar performance!",
+        "Way to go!",
+        "Your brain must be solar-powered because it radiates pure genius every day.",
+        "Watching you work is like observing a master chef cooking brilliance into existence.",
+        "Your talent is so bright, I need sunglasses just to keep up.",
+        "If excellence were an Olympic sport, you'd win gold preheated and wrapped in applause.",
+        "Your ideas sparkle more than a disco ball at a meteor shower.",
+        "Your work is so sharp, even diamonds ask for your autograph.",
+        "You’ve cracked success like an egg, and the yolk is just perfect.",
+        "Your skill is so mesmerizing, even magic wands feel obsolete around you.",
+        "If brilliance had a face, it would be crying tears of pride now.",
+        "You’re so on point, archers give you a standing ovation.",
+        "Your success could power a small city, and still have leftovers.",
+        "You blend creativity and precision better than peanut butter and jelly.",
+        "Your success today makes yesterday look like it was on vacation.",
+        "You are a rocket, fueled by pure awesome.",
+        "Just watching you work makes me smarter.",
+        "You’re setting records so quickly, even speedometers are jealous.",
+        "Your talent is brighter than a supernova on a dark night.",
+        "You’re cooking up brilliance so tasty, it could earn another Michelin star.",
+        "Your mind moves faster than a bullet train chasing a cheetah.",
+        "Your insights are deeper than the Mariana Trench of intellect.",
+        "The excitment of your success is so contagious, I need a vaccine.",
+        "Your talent is like a fine wine, improving with every moment.",
+        "I bet your breakfast is cooked within a micron.",
+        "You’re so smart.  I bet you're charming and good looking, too.",
+        "Your success glows brighter than my phone screen at bedtime.",
+        "Your brain is a powerhouse; I’m filing for its patent.",
+        "The bar just raised itself to meet you.",
+        "You're so brilliant, light bulbs ask you for illumination tips.",
+        "Eagles soar high, but they fly in your shadow.",
+        "Your farm breeds a whole lot of genius.",
+        "Your talent is sharper than cheddar, and twice as mature.",
+        "You're so efficient, you make robotic arms feel underdressed.",
+        "Your brain is so big, black holes file restraining orders.",
+        "Your skills could teach a master class at the school of awesome.",
+        "Your achievement today should be bottled and sold as pure inspiration.",
+        "You operate at such a high level, gravity is jealous.",
+        "Your performance today was like a lightning bolt wrapped in silk.",
+        "Your solutions are so neat, Marie Kondo wants your address.",
+        "Your performance is so epic, historians will write ballads about you.",
+        "You're like a Swiss Army knife—versatile, sharp, and always impressive.",
+        "You are a tornado of brilliance sweeping away mediocrity.",
+        "So it turns out you're pretty great - keep it up!",
+        "All aboard!  Your freight train of performance is underway.",
+        "Your success is magnetic... iron filings cling to you.",
+        "You’re a maestro of success; conductors study your every move.",
+        "Your mind is a diamond mine; priceless gems emerge constantly.",
+        "Wow. Your productivity makes Energizer bunnies feel like they need naps.",
+        "Your performance is smoother than a buttered and reheated croissant.",
+        "In the dictionary, your picture can be found under 'Greatness'",
+        "You are so bright, sunglasses sell out near you."
+    ],
+
+    //Message to show when an incorrect answer is shown:
+    incorrectAnswerMessages: [
+        "Oops, you were close—keep going!",
+        "That’s okay; errors help you learn.",
+        "Almost there; let’s move to the next.",
+        "Mistakes happen; focus on the next challenge.",
+        "Hey, it’s not win or lose, it’s win or learn!",
+        "Shake it off and hit the next question.",
+        "That’s okay—confidence grows through trial and error.",
+        "You’ll bounce back—let’s continue onward.",
+        "Gosh, you were doing so well—keep at it!",
+        "Wrong answer, right mindset—onward to mastery.",
+        "It’s fine; your progress isn’t defined by one question.",
+        "Lessons learned—let’s tackle what’s next.",
+        "One hiccup won’t stop your forward momentum.",
+        "Minor setback; major growth awaits you.",
+        "It’s okay; you’re sharpening your skills here.",
+        "Almost—but not quite; let’s keep learning.",
+        "That’s a miss, but a chance to improve.",
+        "Take a breath and move on confidently.",
+        "Mistakes are proof you’re trying your best.",
+        "It’s okay; growth is messy sometimes.",
+        "Nice effort—your brain is still buzzing.",
+        "You’ve got this—on to the next.",
+        "It’s okay—learning isn’t linear.",
+        "Stay positive; you’re building mastery here.",
+        "Don’t sweat it; focus on growth now.",
+        "One slip won’t slow you down.",
+        "You’ll laugh at this mistake later—keep moving.",
+        "Your effort counts more than one answer... Keep going!",
+        "Embrace the learning curve.",
+        "Don’t let this trip-up distract you.",
+        "Keep your head up—success loves perseverance.",
+        "Not quite there—try again on the next.",
+        "Oops... but your growth mindset is more important than perfection.",
+        "Incorrect now; unstoppable later!",
+        "Take a breath—future success awaits you.",
+        "Oops!  That's ok, you’ll only get stronger from this.",
+        "Mistakes are part of your learning journey.",
+        "It’s only a slip, not a stop.",
+        "Incorrect answer, valuable lesson—let’s continue.",
+        "That’s okay; your brain is in practice mode.",
+        "Missed it, but you’re still moving forward.",
+        "You learn more from your mistakes than successes.",
+        "Incorrect isn’t bad—just another step to mastery.",
+        "Everything is hard before it's easy.",
+        "No worries—this too shall guide your growth.",
+        "Sincere effort—now onto the next challenge!",
+        "It’s fine; every expert was once a beginner.",
+        "That’s okay—resilience is your greatest asset.",
+        "Keep moving—learning never stops for mistakes.",
+        "One misstep; many steps ahead remain.",
+        "Stay focused—growth comes from overcoming setbacks.",
+        "That’s alright; you’re sharpening your mind.",
+        "One set-back, ten steps forward next.",
+        "You’ll bounce back better than before.",
+        "Every mistake is proof you’re stretching your limits.",
+        "Keep your chin up—success is just ahead.",
+        "You’ll look back on this and smile.",
+        "That’s okay; you’re still rocking this.",
+        "Your progress isn’t measured by one question.",
+        "Setbacks are temporary; keep striving onward.",
+        "Let’s turn this misstep into motivation.",
+        "Gently recover, then attack the next question!",
+        "It’s fine; each mistake fuels your future success."
+    ],
+
+    // Adaptive testing configuration
+    adaptiveTesting: {
+        // Number of questions per difficulty level
+        questionsPerDifficulty: {
+            Easy: 5,
+            Medium: 5,
+            Hard: 5
+        },
+        // Thresholds for advancing to next difficulty
+        advancementThreshold: 0.7,  // 70% correct to advance to next level
+        // Thresholds for reducing difficulty
+        reductionThreshold: 0.4,    // Below 40% correct returns to lower level
+        // Minimum questions before test can end early
+        minQuestionsRequired: 5,
+        // Performance threshold for early termination
+        earlyTerminationThreshold: {
+            lowPerformer: 0.3,  // Below 30% correct on easy questions
+            highPerformer: 0.9  // Above 90% correct on hard questions
+        },
+        // When loading questions (for large datasets)
+        initialQuestionsPerDifficulty: 10  // Load this many questions per difficulty initially
+    }
 };
 /*
 // Sample test data for demonstration
@@ -8422,10 +8424,10 @@ const sampleTestData = addUniqueIdsToQuestions([
 ]); */
 
 function addUniqueIdsToQuestions(questions) {
-  return questions.map((q, idx) => ({
-    ...q,
-    id: q.id || `q_${idx + 1}`
-  }));
+    return questions.map((q, idx) => ({
+        ...q,
+        id: q.id || `q_${idx + 1}`
+    }));
 }
 
 /**
@@ -8433,51 +8435,51 @@ function addUniqueIdsToQuestions(questions) {
  * Works with both grouped and ungrouped data
  */
 const organizeTestData = (data) => {
-  // Group questions by difficulty
-  const groupedData = {
-    Easy: [],
-    Medium: [],
-    Hard: []
-  };
-  
-  // Add questions to their respective difficulty groups
-  data.forEach(question => {
-    // Normalize difficulty (to handle different capitalizations)
-    const normalizedDifficulty = normalizeDifficulty(question.difficulty);
-    
-    if (groupedData[normalizedDifficulty]) {
-      groupedData[normalizedDifficulty].push({
-        ...question,
-        difficulty: normalizedDifficulty  // Ensure consistent casing
-      });
-    } else {
-      // Default to Medium if difficulty not recognized
-      console.log(`Unrecognized difficulty "${question.difficulty}", defaulting to Medium`);
-      groupedData.Medium.push({...question, difficulty: 'Medium'});
-    }
-  });
-  
-  return groupedData;
+    // Group questions by difficulty
+    const groupedData = {
+        Easy: [],
+        Medium: [],
+        Hard: []
+    };
+
+    // Add questions to their respective difficulty groups
+    data.forEach(question => {
+        // Normalize difficulty (to handle different capitalizations)
+        const normalizedDifficulty = normalizeDifficulty(question.difficulty);
+
+        if (groupedData[normalizedDifficulty]) {
+            groupedData[normalizedDifficulty].push({
+                ...question,
+                difficulty: normalizedDifficulty  // Ensure consistent casing
+            });
+        } else {
+            // Default to Medium if difficulty not recognized
+            console.log(`Unrecognized difficulty "${question.difficulty}", defaulting to Medium`);
+            groupedData.Medium.push({ ...question, difficulty: 'Medium' });
+        }
+    });
+
+    return groupedData;
 };
 
 /**
  * Normalize difficulty level to match expected format
  */
 const normalizeDifficulty = (difficulty) => {
-  if (!difficulty) return 'Medium';
-  
-  const normalized = difficulty.toLowerCase().trim();
-  
-  if (normalized === 'easy' || normalized === 'beginner' || normalized === 'basic') {
-    return 'Easy';
-  } else if (normalized === 'medium' || normalized === 'intermediate' || normalized === 'moderate') {
+    if (!difficulty) return 'Medium';
+
+    const normalized = difficulty.toLowerCase().trim();
+
+    if (normalized === 'easy' || normalized === 'beginner' || normalized === 'basic') {
+        return 'Easy';
+    } else if (normalized === 'medium' || normalized === 'intermediate' || normalized === 'moderate') {
+        return 'Medium';
+    } else if (normalized === 'hard' || normalized === 'difficult' || normalized === 'advanced' || normalized === 'expert') {
+        return 'Hard';
+    }
+
+    // Default to Medium for unrecognized difficulties
     return 'Medium';
-  } else if (normalized === 'hard' || normalized === 'difficult' || normalized === 'advanced' || normalized === 'expert') {
-    return 'Hard';
-  }
-  
-  // Default to Medium for unrecognized difficulties
-  return 'Medium';
 };
 
 /**
@@ -8485,46 +8487,46 @@ const normalizeDifficulty = (difficulty) => {
  * Useful for large datasets to avoid loading all questions at once
  */
 const getInitialQuestions = (organizedData, count = 10) => {
-  const result = {
-    Easy: [],
-    Medium: [],
-    Hard: []
-  };
-  
-  // Get a subset of questions for each difficulty
-  Object.keys(result).forEach(difficulty => {
-    if (organizedData[difficulty] && organizedData[difficulty].length > 0) {
-      // Shuffle the questions to get a random subset
-      const shuffled = [...organizedData[difficulty]].sort(() => 0.5 - Math.random());
-      result[difficulty] = shuffled.slice(0, count);
-    }
-  });
-  
-  return result;
+    const result = {
+        Easy: [],
+        Medium: [],
+        Hard: []
+    };
+
+    // Get a subset of questions for each difficulty
+    Object.keys(result).forEach(difficulty => {
+        if (organizedData[difficulty] && organizedData[difficulty].length > 0) {
+            // Shuffle the questions to get a random subset
+            const shuffled = [...organizedData[difficulty]].sort(() => 0.5 - Math.random());
+            result[difficulty] = shuffled.slice(0, count);
+        }
+    });
+
+    return result;
 };
 
 /**
  * Get additional questions when needed
  */
 const getAdditionalQuestions = (organizedData, currentQuestions, difficulty, count = 5) => {
-  if (!organizedData[difficulty] || organizedData[difficulty].length === 0) {
-    return [];
-  }
-  
-  // Find questions that aren't already in the current set
-  const currentIds = new Set(currentQuestions[difficulty].map(q => q.id));
-  const additionalQuestions = organizedData[difficulty].filter(q => !currentIds.has(q.id));
-  
-  // Shuffle and take the requested count
-  const shuffled = [...additionalQuestions].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+    if (!organizedData[difficulty] || organizedData[difficulty].length === 0) {
+        return [];
+    }
+
+    // Find questions that aren't already in the current set
+    const currentIds = new Set(currentQuestions[difficulty].map(q => q.id));
+    const additionalQuestions = organizedData[difficulty].filter(q => !currentIds.has(q.id));
+
+    // Shuffle and take the requested count
+    const shuffled = [...additionalQuestions].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
 };
 
-export { 
-  gameConfig, 
-  //sampleTestData, 
-  organizeTestData, 
-  normalizeDifficulty,
-  getInitialQuestions,
-  getAdditionalQuestions
+export {
+    gameConfig,
+    //sampleTestData, 
+    organizeTestData,
+    normalizeDifficulty,
+    getInitialQuestions,
+    getAdditionalQuestions
 };
