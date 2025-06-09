@@ -1,4 +1,14 @@
 ﻿import React, { useState } from 'react';
+import { useMemo } from 'react';
+
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
 
 const QuestionDisplay = ({
     currentQuestion,
@@ -10,6 +20,13 @@ const QuestionDisplay = ({
     handleFeedback
 }) => {
     const [feedbackSent, setFeedbackSent] = useState(false);
+
+    // Shuffle options only when the question changes
+    const shuffledOptions = useMemo(() => {
+        return currentQuestion && currentQuestion.options
+            ? shuffleArray(currentQuestion.options)
+            : [];
+    }, [currentQuestion]);
 
     // If test is completed, render the summary
     if (testCompleted) {
@@ -49,7 +66,7 @@ const QuestionDisplay = ({
             <h2>{currentQuestion.question}</h2>
 
             <div className="options">
-                {currentQuestion.options && currentQuestion.options.map((option, index) => (
+                {shuffledOptions.map((option, index) => (
                     <button
                         key={currentQuestion.id + '_' + index}
                         className="option-btn"
