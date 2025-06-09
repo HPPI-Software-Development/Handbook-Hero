@@ -1,12 +1,13 @@
 ﻿// Updated GameifiedTest.jsx
 
 import React, { useState, useEffect } from 'react';
-import { gameConfig, sampleTestData } from './GameConfig';
+import { gameConfig } from './GameConfig';
 import { styles } from './GameStyles';
 import GameProgressTracker from './GameProgressTracker';
 import QuestionDisplay, { TestCompletionSummary } from './QuestionDisplay';
 import useAdaptiveTest from './AdaptiveTest';
 import useGameMessageManager from './GameMessageManager';
+import questions from '../../questions';
 
 const getUniqueSections = (testData) => {
     const sections = new Set();
@@ -288,8 +289,7 @@ const SectionTest = ({
     );
 };
 
-const GameifiedTest = ({ testData = sampleTestData }) => {
-    // Progress state
+const GameifiedTest = ({ testData = questions }) => {
     const [currentPoints, setCurrentPoints] = useState(0);
     const [earnedBadges, setEarnedBadges] = useState([]);
     const [answeredQuestions, setAnsweredQuestions] = useState(0);

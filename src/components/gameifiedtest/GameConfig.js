@@ -19,20 +19,138 @@ const gameConfig = {
     { name: "Problem Solver", icon: "🧩", pointsRequired: 300, message: "You're solving problems like a pro!" },
     { name: "Expert", icon: "🏆", pointsRequired: 700, message: "You've mastered the material!" },
     { name: "Genius", icon: "🧠", pointsRequired: 2000, message: "Absolutely brilliant work!" },
-    { name: "Savant", icon: "🧠", pointsRequired: 100000, message: "You have arrived!  Take a moment to enjoy the view." }
+    { name: "Savant", icon: "🔥", pointsRequired: 100000, message: "You have arrived!  Take a moment to enjoy the view." }
   ],
   // Encouraging messages shown randomly
   encouragingMessages: [
     "Great job, keep going!",
     "You're doing fantastic!",
     "That's the way to do it!",
+    
     "Excellent progress!",
     "You're on fire today!",
     "Keep up the good work!",
     "Impressive skills!",
+    "Wow! Look at your big, beautiful brain.",
     "You're crushing it!",
     "Stellar performance!",
-    "Way to go!"
+    "Way to go!",
+    "Your brain must be solar-powered because it radiates pure genius every day.",
+    "Watching you work is like observing a master chef cooking brilliance into existence.",
+    "Your talent is so bright, I need sunglasses just to keep up.",
+    "If excellence were an Olympic sport, you'd win gold preheated and wrapped in applause.",
+    "Your ideas sparkle more than a disco ball at a meteor shower.",
+    "Your work is so sharp, even diamonds ask for your autograph.",
+    "You’ve cracked success like an egg, and the yolk is just perfect.",
+    "Your skill is so mesmerizing, even magic wands feel obsolete around you.",
+    "If brilliance had a face, it would be crying tears of pride now.",
+    "You’re so on point, archers give you a standing ovation.",
+    "Your success could power a small city, and still have leftovers.",
+    "You blend creativity and precision better than peanut butter and jelly.",
+    "Your success today makes yesterday look like it was on vacation.",
+    "You are a rocket, fueled by pure awesome.",
+    "Just watching you work makes me smarter.",
+    "You’re setting records so quickly, even speedometers are jealous.",
+    "Your talent is brighter than a supernova on a dark night.",
+    "You’re cooking up brilliance so tasty, it could earn another Michelin star.",
+    "Your mind moves faster than a bullet train chasing a cheetah.",
+    "Your insights are deeper than the Mariana Trench of intellect.",
+    "The excitment of your success is so contagious, I need a vaccine.",
+    "Your talent is like a fine wine, improving with every moment.",
+    "I bet your breakfast is cooked within a micron.",
+    "You’re so smart.  I bet you're charming and good looking, too.",
+    "Your success glows brighter than my phone screen at bedtime.",
+    "Your brain is a powerhouse; I’m filing for its patent.",
+    "The bar just raised itself to meet you.",
+    "You're so brilliant, light bulbs ask you for illumination tips.",
+    "Eagles soar high, but they fly in your shadow.",
+    "Your farm breeds a whole lot of genius.",
+    "Your talent is sharper than cheddar, and twice as mature.",
+    "You're so efficient, you make robotic arms feel underdressed.",
+    "Your brain is so big, black holes file restraining orders.",
+    "Your skills could teach a master class at the school of awesome.",
+    "Your achievement today should be bottled and sold as pure inspiration.",
+    "You operate at such a high level, gravity is jealous.",
+    "Your performance today was like a lightning bolt wrapped in silk.",
+    "Your solutions are so neat, Marie Kondo wants your address.",
+    "Your performance is so epic, historians will write ballads about you.",
+    "You're like a Swiss Army knife—versatile, sharp, and always impressive.",
+    "You are a tornado of brilliance sweeping away mediocrity.",
+    "So it turns out you're pretty great - keep it up!",
+    "All aboard!  Your freight train of performance is underway.",
+    "Your success is magnetic...   iron filings cling to you.",
+    "You’re a maestro of success; conductors study your every move.",
+    "Your mind is a diamond mine; priceless gems emerge constantly.",
+    "Wow. Your productivity makes Energizer bunnies feel like they need naps.",
+    "Your performance is smoother than a buttered and reheated croissant.",
+    "In the dictionary, your picture can be found under 'Greatness'",
+    "You are so bright, sunglasses sell out near you."
+
+//Message to show when an incorrect answer is shown:
+//"Oops, you were close—keep going!"
+//"That’s okay; errors help you learn."
+//"Almost there; let’s move to the next."
+//"Mistakes happen; focus on the next challenge."
+//"Hey, it’s not win or lose, it’s win or learn!"
+//"Shake it off and hit the next question."
+//"That’s okay—confidence grows through trial and error."
+//"You’ll bounce back—let’s continue onward."
+//"Gosh, you were doing so well—keep at it!"
+//"Wrong answer, right mindset—onward to mastery."
+//"It’s fine; your progress isn’t defined by one question."
+//"Lessons learned—let’s tackle what’s next."
+//"One hiccup won’t stop your forward momentum."
+//"Minor setback; major growth awaits you."
+//"It’s okay; you’re sharpening your skills here."
+//"Almost—but not quite; let’s keep learning."
+//"That’s a miss, but a chance to improve."
+//"Take a breath and move on confidently."
+//"Mistakes are proof you’re trying your best."
+//"It’s okay; growth is messy sometimes."
+//"Nice effort—your brain is still buzzing."
+//"You’ve got this—on to the next."
+//"It’s okay—learning isn’t linear."
+//"Stay positive; you’re building mastery here."
+//"Don’t sweat it; focus on growth now."
+//"One slip won’t slow you down."
+//"You’ll laugh at this mistake later—keep moving."
+//"Your effort counts more than one answer... Keep going!"
+//"Embrace the learning curve."
+//"Don’t let this trip-up distract you."
+//"Keep your head up—success loves perseverance."
+//"Not quite there—try again on the next."
+//"Oops... but your growth mindset is more important than perfection."
+//"Incorrect now; unstoppable later!"
+//"Take a breath—future success awaits you."
+//"Oops!  That's ok, you’ll only get stronger from this."
+//"Mistakes are part of your learning journey."
+//"It’s only a slip, not a stop."
+//"Incorrect answer, valuable lesson—let’s continue."
+//"That’s okay; your brain is in practice mode."
+//"Missed it, but you’re still moving forward."
+//"You learn more from your mistakes than successes."
+//"Incorrect isn’t bad—just another step to mastery."
+//"Everything is hard before it's easy."
+//"No worries—this too shall guide your growth."
+//"Sincere effort—now onto the next challenge!"
+//"It’s fine; every expert was once a beginner."
+//"That’s okay—resilience is your greatest asset."
+//"Keep moving—learning never stops for mistakes."
+//"One misstep; many steps ahead remain."
+//"Stay focused—growth comes from overcoming setbacks."
+//"That’s alright; you’re sharpening your mind."
+//"One set-back, ten steps forward next."
+//"You’ll bounce back better than before."
+//"Every mistake is proof you’re stretching your limits."
+//"Keep your chin up—success is just ahead."
+//"You’ll look back on this and smile."
+//"That’s okay; you’re still rocking this."
+//"Your progress isn’t measured by one question."
+//"Setbacks are temporary; keep striving onward."
+//"Let’s turn this misstep into motivation."
+//"Gently recover, then attack the next question!"
+//"It’s fine; each mistake fuels your future success."
+    
   ],
   // Adaptive testing configuration
   adaptiveTesting: {
@@ -57,11 +175,11 @@ const gameConfig = {
     initialQuestionsPerDifficulty: 10  // Load this many questions per difficulty initially
   }
 };
-
+/*
 // Sample test data for demonstration
 const sampleTestData = addUniqueIdsToQuestions([
   // Easy questions
-  {
+{
     "section": "Mechanics",
     "difficulty": "Easy",
     "type": "multiple_choice",
@@ -74,7 +192,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What does CNC stand for in CNC machining?",
-    "options": ["Computer Numerical Control", "Centralized Numeric Calibration", "Controlled Numeric Cutting", "Computerized Node Configuration"],
+    "options": ["Centralized Numeric Calibration", "Controlled Numeric Cutting", "Computer Numerical Control", "Computerized Node Configuration"],
     "answer": "Computer Numerical Control"
   },
   {
@@ -82,7 +200,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is the primary function of a CNC machine?",
-    "options": ["To precisely control tools and machinery", "To design 3D models", "To print documents", "To assemble electronic circuits"],
+    "options": ["To design 3D models", "To print documents", "To precisely control tools and machinery", "To assemble electronic circuits"],
     "answer": "To precisely control tools and machinery"
   },
   {
@@ -90,7 +208,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "Which material is commonly machined using CNC machines?",
-    "options": ["Metal", "Paper", "Cloth", "Glass"],
+    "options": ["Paper", "Metal", "Cloth", "Glass"],
     "answer": "Metal"
   },
   {
@@ -98,7 +216,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What type of tool is used to remove material in CNC machining?",
-    "options": ["Cutting tool", "Measuring tape", "Screwdriver", "Hammer"],
+    "options": ["Measuring tape", "Screwdriver", "Cutting tool", "Hammer"],
     "answer": "Cutting tool"
   },
   {
@@ -106,7 +224,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is the role of a CNC operator?",
-    "options": ["To set up and monitor the machine", "To design the machine", "To repair electrical systems", "To market the machine"],
+    "options": ["To design the machine", "To repair electrical systems", "To set up and monitor the machine", "To market the machine"],
     "answer": "To set up and monitor the machine"
   },
   {
@@ -114,7 +232,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "Which software is often used to create CNC programs?",
-    "options": ["CAD/CAM", "Microsoft Word", "Photoshop", "Excel"],
+    "options": ["Microsoft Word", "Photoshop", "CAD/CAM", "Excel"],
     "answer": "CAD/CAM"
   },
   {
@@ -122,7 +240,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is a common type of CNC machine?",
-    "options": ["CNC Milling Machine", "CNC Typewriter", "CNC Oven", "CNC Scanner"],
+    "options": ["CNC Typewriter", "CNC Milling Machine", "CNC Oven", "CNC Scanner"],
     "answer": "CNC Milling Machine"
   },
   {
@@ -130,7 +248,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What does CAM stand for in CNC machining?",
-    "options": ["Computer-Aided Manufacturing", "Computer-Aided Modeling", "Centralized Automation Machine", "Controlled Axis Movement"],
+    "options": ["Computer-Aided Modeling", "Centralized Automation Machine", "Controlled Axis Movement", "Computer-Aided Manufacturing"],
     "answer": "Computer-Aided Manufacturing"
   },
   {
@@ -138,7 +256,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is used to hold the workpiece in a CNC machine?",
-    "options": ["Vise or clamp", "Tape", "Glue", "Magnet"],
+    "options": ["Tape", "Glue", "Magnet", "Vise or clamp"],
     "answer": "Vise or clamp"
   },
   {
@@ -146,7 +264,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is a G-code in CNC machining?",
-    "options": ["A programming language for CNC machines", "A type of cutting tool", "A safety protocol", "A machine model number"],
+    "options": ["A type of cutting tool", "A safety protocol", "A programming language for CNC machines", "A machine model number"],
     "answer": "A programming language for CNC machines"
   },
   {
@@ -154,15 +272,15 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is the purpose of a spindle in a CNC machine?",
-    "options": ["To rotate the cutting tool", "To cool the machine", "To hold the workpiece", "To power the machine"],
+    "options": ["To cool the machine", "To hold the workpiece", "To rotate the cutting tool", "To power the machine"],
     "answer": "To rotate the cutting tool"
   },
   {
     "section": "CNC Machining",
     "difficulty": "Easy",
     "type": "multiple_choice",
-    "question": "What is a common safety practice in CNC machining?",
-    "options": ["Wearing safety glasses", "Using bare hands", "Leaving tools on the machine", "Ignoring machine alarms"],
+    "question": "What is a smart safety practice in CNC machining?",
+    "options": ["Wearing safety glasses", "Listening to music", "Leaving tools in the machine", "Ignoring machine alarms"],
     "answer": "Wearing safety glasses"
   },
   {
@@ -170,14 +288,14 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is a workpiece in CNC machining?",
-    "options": ["The material being machined", "The cutting tool", "The machine itself", "The computer program"],
+    "options": ["The cutting tool", "The machine itself", "The computer program","The material being machined"],
     "answer": "The material being machined"
   },
   {
     "section": "CNC Machining",
     "difficulty": "Easy",
     "type": "multiple_choice",
-    "question": "Which axis is typically the vertical axis in CNC machining?",
+    "question": "Which axis is typically the vertical axis in a mill?",
     "options": ["Z-axis", "X-axis", "Y-axis", "W-axis"],
     "answer": "Z-axis"
   },
@@ -186,7 +304,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is a CNC lathe used for?",
-    "options": ["Turning cylindrical parts", "Cutting flat surfaces", "Drilling square holes", "Welding metal"],
+    "options": ["Cutting flat surfaces", "Drilling square holes", "Turning cylindrical parts", "Welding metal"],
     "answer": "Turning cylindrical parts"
   },
   {
@@ -194,7 +312,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What does CAD stand for in CNC machining?",
-    "options": ["Computer-Aided Design", "Computer-Aided Drilling", "Centralized Automation Device", "Controlled Axis Design"],
+    "options": ["Computer-Aided Drilling", "Centralized Automation Device", "Controlled Axis Design","Computer-Aided Design"],
     "answer": "Computer-Aided Design"
   },
   {
@@ -202,7 +320,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is a toolpath in CNC machining?",
-    "options": ["The route the cutting tool follows", "The storage area for tools", "The machine’s power source", "The operator’s manual"],
+    "options": ["The storage area for tools", "The machine’s power source", "The route the cutting tool follows", "The operator’s manual"],
     "answer": "The route the cutting tool follows"
   },
   {
@@ -210,10 +328,9 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is the purpose of coolant in CNC machining?",
-    "options": ["To reduce heat and friction", "To power the machine", "To clean the workpiece", "To program the machine"],
+    "options": ["To power the machine", "To reduce heat and friction", "To clean the workpiece", "To program the machine"],
     "answer": "To reduce heat and friction"
   },
-  
   {
     "section": "CNC Machining",
     "difficulty": "Easy",
@@ -222,12 +339,11 @@ const sampleTestData = addUniqueIdsToQuestions([
     "options": ["True", "False"],
     "answer": "False"
   },
-  
   {
     "section": "CNC Machining",
     "difficulty": "Easy",
     "type": "multiple_choice",
-    "question": "More power is required to cut hard materials vs soft materials:",
+    "question": "A CNC machine needs more power to cut hard materials:",
     "options": ["True", "False"],
     "answer": "True"
   },
@@ -259,12 +375,11 @@ const sampleTestData = addUniqueIdsToQuestions([
     "section": "CNC Machining",
     "difficulty": "Medium",
     "type": "multiple_choice",
-    "question": "When selecting cutting conditions, the following order is appropriate:",
+    "question": "When selecting cutting conditions, programmers should make decisions in the following order:",
     "options": ["Depth of cut, Feed, Speed", "Speed, Depth of cut, Feed","Feed, Speed, Depth of Cut"],
     "answer": "Depth of cut, Feed, Speed"
   },
-  
-    {
+  {
     "section": "CNC Machining",
     "difficulty": "Hard",
     "type": "multiple_choice",
@@ -280,8 +395,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "options": ["Change to harder, more wear-resistant grade", "Reduce the cutting speed","Reduce the relief angle"],
     "answer": "Reduce the relief angle"
   },
-  
-    {
+  {
     "section": "CNC Machining",
     "difficulty": "Medium",
     "type": "multiple_choice",
@@ -293,7 +407,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "section": "CNC Machining",
     "difficulty": "Medium",
     "type": "multiple_choice",
-    "question": "The difference between M00 and M05 is:",
+    "question": "The difference between the M code 'M00' and 'M05' is:",
     "options": ["M00 means program end, M05 means Automatic Tool Change (ATC)", "M00 means Program Stop, M05 means Spindle Stop"],
     "answer": "M00 means Program Stop, M05 means Spindle Stop"
   },
@@ -374,7 +488,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is a common CNC machining process?",
-    "options": ["Drilling", "Painting", "Sewing", "Baking"],
+    "options": ["Drilling", "Grinding", "EDM", "Anodization"],
     "answer": "Drilling"
   },
   {
@@ -382,7 +496,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is a chuck used for in a CNC lathe?",
-    "options": ["To hold the workpiece", "To cut the material", "To cool the machine", "To program the machine"],
+    "options": ["To cut the material", "To cool the machine", "To program the machine", "To hold the workpiece"],
     "answer": "To hold the workpiece"
   },
   {
@@ -390,7 +504,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is the X-axis in CNC machining?",
-    "options": ["Horizontal movement left to right", "Vertical movement", "Rotational movement", "Diagonal movement"],
+    "options": ["Vertical movement", "Rotational movement", "Horizontal movement left to right", "Diagonal movement"],
     "answer": "Horizontal movement left to right"
   },
   {
@@ -398,39 +512,23 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is a common unit of measurement in CNC machining?",
-    "options": ["Millimeters", "Liters", "Kilograms", "Watts"],
+    "options": ["Liters", "Kilograms", "Watts", "Millimeters"],
     "answer": "Millimeters"
   },
   {
     "section": "CNC Machining",
     "difficulty": "Easy",
     "type": "multiple_choice",
-    "question": "What is a CNC router commonly used for?",
-    "options": ["Cutting wood or composites", "Baking ceramics", "Printing paper", "Sewing fabric"],
-    "answer": "Cutting wood or composites"
-  },
-  {
-    "section": "CNC Machining",
-    "difficulty": "Easy",
-    "type": "multiple_choice",
     "question": "What does a CNC machine use to follow instructions?",
-    "options": ["Computer program", "Manual lever", "Hand crank", "Voice commands"],
+    "options": ["Manual lever", "Hand crank", "Computer program", "Voice commands"],
     "answer": "Computer program"
   },
   {
     "section": "CNC Machining",
     "difficulty": "Easy",
     "type": "multiple_choice",
-    "question": "What is a common cutting tool material in CNC machining?",
-    "options": ["Carbide", "Wood", "Plastic", "Rubber"],
-    "answer": "Carbide"
-  },
-  {
-    "section": "CNC Machining",
-    "difficulty": "Easy",
-    "type": "multiple_choice",
-    "question": "What is the purpose of a CNC controller?",
-    "options": ["To interpret and execute G-code", "To design the workpiece", "To clean the machine", "To assemble parts"],
+    "question": "What is one purpose of a CNC controller?",
+    "options": ["To design the workpiece", "To clean the machine", "To interpret and execute G-code", "To assemble parts"],
     "answer": "To interpret and execute G-code"
   },
   {
@@ -445,6 +543,14 @@ const sampleTestData = addUniqueIdsToQuestions([
     "section": "CNC Machining",
     "difficulty": "Easy",
     "type": "multiple_choice",
+    "question": "If a lathe has three turrets, what would be the primary difference between it and a lathe with two turrets?",
+    "options": ["It will hold fewer tools", "Cycle times will be shorter than a machine with two turrets", "Cycles times will be the same as a machine with two turrets", "Cycles time will be longer than a machine with two turrets"],
+    "answer": "Cycle times will be shorter than a machine with two turrets"
+  },
+  {
+    "section": "CNC Machining",
+    "difficulty": "Easy",
+    "type": "multiple_choice",
     "question": "What is a CNC plasma cutter used for?",
     "options": ["Cutting metal with plasma", "Drilling holes in wood", "Printing designs", "Welding plastic"],
     "answer": "Cutting metal with plasma"
@@ -453,8 +559,8 @@ const sampleTestData = addUniqueIdsToQuestions([
     "section": "CNC Machining",
     "difficulty": "Easy",
     "type": "multiple_choice",
-    "question": "What is the Y-axis in CNC machining?",
-    "options": ["Horizontal movement front to back", "Vertical movement", "Rotational movement", "Diagonal movement"],
+    "question": "What is the Y-axis in a vertical mill?",
+    "options": ["Vertical movement", "Horizontal movement front to back", "Horizontal movement left to right", "Diagonal movement"],
     "answer": "Horizontal movement front to back"
   },
   {
@@ -462,7 +568,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "difficulty": "Easy",
     "type": "multiple_choice",
     "question": "What is a common CNC machining operation?",
-    "options": ["Turning", "Typing", "Scanning", "Baking"],
+    "options": ["Turning", "Receiving", "Grit blasting", "Lapping"],
     "answer": "Turning"
   },
   {
@@ -477,9 +583,9 @@ const sampleTestData = addUniqueIdsToQuestions([
     "section": "CNC Machining",
     "difficulty": "Easy",
     "type": "multiple_choice",
-    "question": "What is a common power source for CNC machines?",
-    "options": ["Electricity", "Steam", "Wind", "Solar"],
-    "answer": "Electricity"
+    "question": "What are the primary differences between single phase and three phase power?",
+    "options": ["Single phase is cheaper to install, delivers power in peaks and valleys and single phase motors are more prone to vibration and less powerful.  Three phrase motors are more compact, reliable, and energy-efficient.  Three phase delivers smoother, more constant power.", "I'm not sure."],
+    "answer": "Single phase is cheaper to install, delivers power in peaks and valleys and single phase motors are more prone to vibration and less powerful.  Three phrase motors are more compact, reliable, and energy-efficient.  Three phase delivers smoother, more constant power."
   },
   {
     "section": "CNC Machining",
@@ -8313,7 +8419,7 @@ const sampleTestData = addUniqueIdsToQuestions([
     "answer": "10 lb-s"
   },
 
-]);
+]); */
 
 function addUniqueIdsToQuestions(questions) {
   return questions.map((q, idx) => ({
@@ -8416,7 +8522,7 @@ const getAdditionalQuestions = (organizedData, currentQuestions, difficulty, cou
 
 export { 
   gameConfig, 
-  sampleTestData, 
+  //sampleTestData, 
   organizeTestData, 
   normalizeDifficulty,
   getInitialQuestions,
