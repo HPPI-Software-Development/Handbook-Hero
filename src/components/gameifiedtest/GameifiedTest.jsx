@@ -267,6 +267,7 @@ const SectionTest = ({
                 currentDifficulty={adaptiveTest.currentDifficulty}
                 consecutiveCorrect={adaptiveTest.consecutiveCorrect}
                 skippedQuestions={adaptiveTest.skippedQuestions}
+                testCompleted={adaptiveTest.testCompleted}
             />
             <QuestionDisplay
                 currentQuestion={adaptiveTest.currentQuestion}
