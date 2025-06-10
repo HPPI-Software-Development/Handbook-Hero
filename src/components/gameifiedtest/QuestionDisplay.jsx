@@ -50,7 +50,7 @@ const QuestionDisplay = ({
     // Feedback handler with confirmation
     const onFeedback = (type) => {
         if (handleFeedback) {
-            handleFeedback(type);
+            handleFeedback(type, currentQuestion);
             setFeedbackSent(true);
             setTimeout(() => setFeedbackSent(false), 1200); // Reset for next question
         }

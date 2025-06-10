@@ -12,10 +12,13 @@ const GameProgressTracker = ({
     consecutiveCorrect,
     skippedQuestions
 }) => {
-    const progressPercentage = Math.min(
-        Math.round((answeredQuestions / totalQuestions) * 100),
-        100
-    );
+    // Update the progress calculation to match the current question number display
+    const currentQuestion = answeredQuestions + skippedQuestions.length;
+
+    // Calculate progress percentage based on questions already answered
+    // Make sure it reaches 100% when all questions are completed
+    const progressPercentage = totalQuestions > 0 ?
+        Math.min(Math.round((currentQuestion / totalQuestions) * 100), 100) : 0;
 
     return (
         <div className="game-container">
@@ -34,7 +37,7 @@ const GameProgressTracker = ({
                 </div>
 
                 <div className="progress-info">
-                    <span>Question {answeredQuestions + skippedQuestions.length + 1} of {totalQuestions}</span>
+                    <span>Question {currentQuestion + 1} of {totalQuestions}</span>
                     <span>
                         {skippedQuestions.length > 0 && `${skippedQuestions.length} skipped`}
                     </span>
