@@ -831,6 +831,62 @@ const styles = `
     100% { background-color: var(--white); }
 }
 
+/* Quote styling */
+.quote-container {
+  margin: 24px 0;
+  padding: 20px;
+  background-color: #f7f9e8;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  position: relative;
+  border-left: 4px solid var(--secondary);
+}
+
+.quote-text {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--dark);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  quotes: """ """ "'" "'";
+}
+
+.quote-text::before {
+  content: open-quote;
+  font-size: 1.5em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.2em;
+  color: var(--secondary);
+}
+
+.quote-text::after {
+  content: close-quote;
+  font-size: 1.5em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.2em;
+  color: var(--secondary);
+}
+
+.quote-author {
+  margin-top: 10px;
+  text-align: right;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+@media (max-width: 480px) {
+  .quote-text {
+    font-size: 1rem;
+  }
+
+  .quote-author {
+    font-size: 0.9rem;
+  }
+}
+
 `;
 
 export { styles };

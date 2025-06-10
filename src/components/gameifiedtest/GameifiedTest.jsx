@@ -8,6 +8,7 @@ import QuestionDisplay, { TestCompletionSummary } from './QuestionDisplay';
 import useAdaptiveTest from './AdaptiveTest';
 import useGameMessageManager from './GameMessageManager';
 import questions from '../../questions';
+import { sendFeedbackEmail } from '../../services/emailService';
 
 const getUniqueSections = (testData) => {
     const sections = new Set();
@@ -274,8 +275,21 @@ const SectionTest = ({
                 handleAnswer={handleAnswer}
                 handleSkip={adaptiveTest.handleSkip}
                 renderTestCompletion={renderTestCompletion}
-                handleFeedback={(type) => {
+                handleFeedback={(type, questionData) => {
                     adaptiveTest.handleFeedback(type);
+
+                    // Send email notification with feedback
+                    try {
+                        sendFeedbackEmail({
+                            questionId: questionData?.id || 'unknown',
+                            questionText: questionData?.question || 'unknown',
+                            feedbackType: type,
+                            section: questionData?.section || 'unknown',
+                            difficulty: questionData?.difficulty || 'unknown'
+                        });
+                    } catch (error) {
+                        console.error('Error sending feedback email:', error);
+                    }
 
                     if (isReviewMode && adaptiveTest.currentQuestion) {
                         // If we're in review mode and feedback is provided, also remove from review list
